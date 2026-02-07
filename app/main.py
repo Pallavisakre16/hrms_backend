@@ -46,6 +46,10 @@ def startup_event():
     finally:
         db.close()
 
+@app.get("/")
+def health():
+    return {"status": "ok"}
+
 @app.post("/admin/login", response_model=schemas.Token)
 def admin_login(
     form_data: OAuth2PasswordRequestForm = Depends(),
